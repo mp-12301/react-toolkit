@@ -1,0 +1,8 @@
+{
+  "name": "react-toolkit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mp-12301/react-toolkit.git",
+  "author": "mp",
+  "license": "MIT"
+}
