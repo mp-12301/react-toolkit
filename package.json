@@ -1,8 +1,15 @@
 {
   "name": "react-toolkit",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "repository": "git@github.com:mp-12301/react-toolkit.git",
   "author": "mp",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "rollup": "^2.60.1"
+  }
 }
