@@ -6,6 +6,7 @@ export const useContainer = (key, defaultValue) => {
   let contextValue = useState(defaultValue)
   let Context = contexts.find(context => context.key === key)?.context
 
+  console.log('Context', Context)
   if (Context === undefined) {
     Context = React.createContext(null)
 
@@ -14,7 +15,7 @@ export const useContainer = (key, defaultValue) => {
       context: Context
     })
   } else {
-    contextValue = useContext(Context)
+    contextValue = useContext(Context) ?? contextValue
   }
 
   const ContainerProvider = ({children}) => {
