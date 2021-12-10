@@ -1,32 +1,38 @@
-import React, { useContext, useState } from 'react'
+import { useCallback, useLayoutEffect,  useState } from 'react'
 
-const contexts = []
+import Container from './container.js'
+
+const store = new Container() 
 
 export const useContainer = (key, defaultValue) => {
-  let contextValue = useState(defaultValue)
-  let Context = contexts.find(context => context.key === key)?.context
-
-  console.log('Context', Context)
-  if (Context === undefined) {
-    Context = React.createContext(null)
-
-    contexts.push({
-      key,
-      context: Context
-    })
+  if (store.lastValues[key]) {
+    defaultValue = store.lastValues[key]
   } else {
-    contextValue = useContext(Context) ?? contextValue
+    store.lastValues[key] = defaultValue
   }
+  
+  const [stateValue, setStateValue] = useState(defaultValue)
+ 
+  const handleSubscribe = useCallback((event) => {
+    if (event.key === key) {
+      setStateValue(event.value)
+    }
+  }, [setStateValue, key])
 
-  const ContainerProvider = ({children}) => {
-    return (
-      <Context.Provider value={contextValue}>
-        {children}
-      </Context.Provider>
-    )
-  }
+  const handleSetStateValue = useCallback((value) => {
+    store.fire({ key, value })
+  }, [key])
 
-  return [...contextValue, ContainerProvider]
+  useLayoutEffect(() => {
+    const handler = {key, fn: handleSubscribe}
+    store.subscribe(handler)
+
+    return () => {
+      store.unsubscribe(handler)
+    }
+  }, [handleSubscribe])
+
+  return [stateValue, handleSetStateValue]
 }
 
-export default useContainer
+export default { useContainer }
