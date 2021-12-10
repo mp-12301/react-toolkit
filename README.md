@@ -1,8 +1,8 @@
 # React Toolkit
 Toolkit that provides utilities for React projects that have been personally useful for me.
 ## Table of Contents
-1. [useContainer](#use-container)
-2. [Modal Handler](#modal-handler)
+- [useContainer](#use-container)
+- [Modal Handler](#modal-handler)
 
 ## 📦 useContainer <a name="use-container"></a>
 A hook that provides a global state across the React components without the need to setup a `Context` from React or passing down properties.
@@ -14,7 +14,7 @@ Quite useful if you just wanna quickly implement a state that is shared between 
 🚨️ _This is not meant to replace Redux or any State Containers, there is a lot more going on those that are saving you from all sorts of disasters._
 
 ### Example
-```
+```jsx
 import { useContainer } from 'react-toolkit'
 
 const componentA = () => {
