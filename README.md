@@ -1,5 +1,5 @@
 # React Toolkit
-Toolkit that provides utilities for React projects that have been personally useful for me.
+Toolkit that provides utilities developed by me for React projects that have been useful.
 ## Table of Contents
 - [useContainer](#use-container)
 - [Modal Handler](#modal-handler)
@@ -43,4 +43,10 @@ const componentB = () => {
  
 
 ## 📦 Modal Handler <a name="modal-handler"></a>
-wip
+_coming soon_
+
+This is a wrapper around the modal component in React (this would also include React Native and the native modal component). 
+This would provide a hook that would allow to use the modal in a more functional way rather than declaring on each component and hiding it.
+
+With a Provider from `useContext` we wrap around the main app component and we can use `useModal` to get methods and states that can help manage modals and select any specific you want to open. 
+
